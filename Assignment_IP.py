@@ -30,13 +30,14 @@ def detect_faces_in_webcam():
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
     # Open the webcam
-    webcam = cv2.VideoCapture(1)
+    webcam = cv2.VideoCapture(0)
 
     #Check if the webcam is open or not
     if not webcam.isOpened():
         st.error("Error: Unable to open webcam.")
         return
-
+    print("Webcam opened successfully.")
+    
     while True:
         # Capture frame-by-frame
         ret, frame = webcam.read()
@@ -78,6 +79,7 @@ option = st.sidebar.selectbox("Select Option", ("None", "Image", "Live Webcam"))
 if option == "None":
     st.title("Welcome to Face Detection App")
     st.write("Please select an option from the sidebar.")
+    
 elif option == "Image":
     uploaded_image = st.file_uploader("Upload Image", type=['jpg', 'png', 'jpeg'])
     if uploaded_image is not None:
@@ -95,6 +97,7 @@ elif option == "Image":
                 st.image(resized_image, caption=f'Number of Faces Detected: {num_faces}', use_column_width=True)
         except Exception as e:
             st.error(f"Error: {e}")
+            
 elif option == "Live Webcam":
     st.write("Live Webcam Feed")
     detect_faces_in_webcam()
