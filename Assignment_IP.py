@@ -80,15 +80,14 @@ if option == "None":
     st.write("Please select an option from the sidebar.")
     
 elif option == "Image":
+    st.title("Counting Face from image")
     uploaded_image = st.file_uploader("Upload Image", type=['jpg', 'png', 'jpeg'])
     if uploaded_image is not None:
         try:
             # Convert uploaded image to NumPy array to get the correct format required in the function detect_faces_in_image
             file_bytes = np.asarray(bytearray(uploaded_image.read()), dtype=np.uint8)
             image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
-
-            st.title("Counting Face from image")
-            
+              
             # Display the uploaded image
             st.image(image, caption='Uploaded Image', use_column_width=True)
 
