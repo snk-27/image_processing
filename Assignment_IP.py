@@ -29,13 +29,13 @@ def detect_faces_in_webcam():
     # Load the pre-trained face detector
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
-    # Attempt to open the webcam
-    webcam = cv2.VideoCapture(0)
+    # Open the webcam
+    webcam = cv2.VideoCapture(1)
 
     #Check if the webcam is open or not
-    #if not webcam.isOpened():
-     #   st.error("Error: Unable to open webcam.")
-      #  return
+    if not webcam.isOpened():
+        st.error("Error: Unable to open webcam.")
+        return
 
     while True:
         # Capture frame-by-frame
