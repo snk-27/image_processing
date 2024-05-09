@@ -72,13 +72,12 @@ def detect_faces_in_webcam():
     cv2.destroyAllWindows()
 
 # Sidebar dropdown list for selecting the option
-option = st.sidebar.selectbox("Select Option", ("Live Webcam", "Image", "None"))
+option = st.sidebar.selectbox("Select Option", ("None", "Image", "Live Webcam"))
 
 # Display content based on the selected option
-if option == "Live Webcam":
-    st.title("Live Webcam Feed")
-    detect_faces_in_webcam()
-
+if option == "None":
+    st.title("Welcome to Face Detection App")
+    st.write("Please select an option from the sidebar.")
     
 elif option == "Image":
     uploaded_image = st.file_uploader("Upload Image", type=['jpg', 'png', 'jpeg'])
@@ -88,6 +87,8 @@ elif option == "Image":
             file_bytes = np.asarray(bytearray(uploaded_image.read()), dtype=np.uint8)
             image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
 
+            st.title("Counting Face from image")
+            
             # Display the uploaded image
             st.image(image, caption='Uploaded Image', use_column_width=True)
 
@@ -98,7 +99,7 @@ elif option == "Image":
         except Exception as e:
             st.error(f"Error: {e}")
             
-elif option == "None":
-    st.title("Welcome to Face Detection App")
-    st.write("Please select an option from the sidebar.")
+elif option == "Live Webcam":
+    st.title("Live Webcam Feed")
+    detect_faces_in_webcam()
 
