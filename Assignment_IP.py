@@ -27,8 +27,7 @@ def detect_faces_in_image(image):
 # Function to detect and count faces from live webcam
 def detect_faces_in_webcam():
     # Load the pre-trained face detector
-    #face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
-    face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+    face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
     # Open the webcam
     webcam = cv2.VideoCapture(0)
@@ -76,9 +75,10 @@ def detect_faces_in_webcam():
 option = st.sidebar.selectbox("Select Option", ("None", "Image", "Live Webcam"))
 
 # Display content based on the selected option
-if option == "None":
-    st.title("Welcome to Face Detection App")
-    st.write("Please select an option from the sidebar.")
+if option == "Live Webcam":
+    st.title("Live Webcam Feed")
+    detect_faces_in_webcam()
+
     
 elif option == "Image":
     uploaded_image = st.file_uploader("Upload Image", type=['jpg', 'png', 'jpeg'])
@@ -98,7 +98,7 @@ elif option == "Image":
         except Exception as e:
             st.error(f"Error: {e}")
             
-elif option == "Live Webcam":
-    st.write("Live Webcam Feed")
-    detect_faces_in_webcam()
+elif option == "None":
+    st.title("Welcome to Face Detection App")
+    st.write("Please select an option from the sidebar.")
 
