@@ -17,6 +17,9 @@ def detect_faces_in_image(image):
     for (x, y, w, h) in faces:
         cv2.rectangle(image, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
+    # Convert BGR image to RGB
+    image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    
     # Display the image with rectangles around the faces
     resized_image = cv2.resize(image, (600, 600)) 
     return resized_image, len(faces)
@@ -69,7 +72,7 @@ elif option == "Image":
     uploaded_image = st.file_uploader("Upload Image", type=['jpg', 'png', 'jpeg'])
     if uploaded_image is not None:
         try:
-            # Convert uploaded image to NumPy array
+            # Convert uploaded image to NumPy array to get the correct format required in the function detect_faces_in_image
             file_bytes = np.asarray(bytearray(uploaded_image.read()), dtype=np.uint8)
             image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
 
