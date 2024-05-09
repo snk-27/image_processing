@@ -60,18 +60,23 @@ def detect_faces_in_webcam():
     webcam.release()
     cv2.destroyAllWindows()
 
-# Streamlit sidebar for selecting the option
-option = st.sidebar.radio("Select Option", ("Image", "Live Webcam"))
+# Sidebar for selecting the option
+option = st.sidebar.selectbox("Select Option", ("None", "Image", "Live Webcam"))
 
-if option == "Image":
-    image_path = st.sidebar.file_uploader("Upload Image", type=['jpg', 'png', 'jpeg'])
-    if image_path is not None:
+if option == "None":
+    st.title("Welcome to Face Detection App")
+    st.write("Please select an option from the sidebar.")
+    
+elif option == "Image":
+    uploaded_image = st.file_uploader("Upload Image", type=['jpg', 'png', 'jpeg'])
+    if uploaded_image is not None:
         # Display the uploaded image
-        st.image(image_path, caption='Uploaded Image', use_column_width=True)
+        image = cv2.imdecode(np.fromstring(uploaded_image.read(), np.uint8), 1)
+        st.image(image, caption='Uploaded Image', use_column_width=True)
 
         # Detect and count faces in the uploaded image
         if st.button("Detect Faces"):
-            resized_image, num_faces = detect_faces_in_image(image_path)
+            resized_image, num_faces = detect_faces_in_image(image)
             st.image(resized_image, caption=f'Faces Detected: {num_faces}', use_column_width=True)
 
 elif option == "Live Webcam":
