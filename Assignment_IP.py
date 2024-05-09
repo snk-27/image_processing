@@ -1,14 +1,11 @@
 import streamlit as st
-import numpy as np
 import cv2
+import numpy as np
 
 # Function to detect and count faces in an image
-def detect_faces_in_image(image_path):
+def detect_faces_in_image(image):
     # Load the pre-trained face detector
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
-
-    # Load the image
-    image = cv2.imread(image_path)
 
     # Convert the image to grayscale
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -61,26 +58,31 @@ def detect_faces_in_webcam():
     webcam.release()
     cv2.destroyAllWindows()
 
-# Sidebar for selecting the option
+# Sidebar dropdown list for selecting the option
 option = st.sidebar.selectbox("Select Option", ("None", "Image", "Live Webcam"))
 
+# Display content based on the selected option
 if option == "None":
-    st.title("Welcome to Face Counting App")
+    st.title("Welcome to Face Detection App")
     st.write("Please select an option from the sidebar.")
-    
 elif option == "Image":
     uploaded_image = st.file_uploader("Upload Image", type=['jpg', 'png', 'jpeg'])
     if uploaded_image is not None:
-        # Display the uploaded image
-        image = cv2.imdecode(np.fromstring(uploaded_image.read(), np.uint8), 1)
-        st.image(image, caption='Uploaded Image', use_column_width=True)
+        try:
+            # Convert uploaded image to NumPy array
+            file_bytes = np.asarray(bytearray(uploaded_image.read()), dtype=np.uint8)
+            image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
 
-        # Detect and count faces in the uploaded image
-        if st.button("Detect Faces"):
-            resized_image, num_faces = detect_faces_in_image(image)
-            st.image(resized_image, caption=f'Faces Detected: {num_faces}', use_column_width=True)
+            # Display the uploaded image
+            st.image(image, caption='Uploaded Image', use_column_width=True)
 
+            # Detect and count faces in the uploaded image
+            if st.button("Detect Faces"):
+                resized_image, num_faces = detect_faces_in_image(image)
+                st.image(resized_image, caption=f'Faces Detected: {num_faces}', use_column_width=True)
+        except Exception as e:
+            st.error(f"Error: {e}")
 elif option == "Live Webcam":
-    # Display the live webcam feed
     st.write("Live Webcam Feed")
     detect_faces_in_webcam()
+
