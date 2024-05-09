@@ -27,7 +27,8 @@ def detect_faces_in_image(image):
 # Function to detect and count faces from live webcam
 def detect_faces_in_webcam():
     # Load the pre-trained face detector
-    face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+    #face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+    face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
     # Open the webcam
     webcam = cv2.VideoCapture(0)
@@ -36,7 +37,6 @@ def detect_faces_in_webcam():
     if not webcam.isOpened():
         st.error("Error: Unable to open webcam.")
         return
-    print("Webcam opened successfully.")
     
     while True:
         # Capture frame-by-frame
