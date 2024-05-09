@@ -1,4 +1,5 @@
 import streamlit as st
+import numpy as np
 import cv2
 
 # Function to detect and count faces in an image
@@ -64,7 +65,7 @@ def detect_faces_in_webcam():
 option = st.sidebar.selectbox("Select Option", ("None", "Image", "Live Webcam"))
 
 if option == "None":
-    st.title("Welcome to Face Detection App")
+    st.title("Welcome to Face Counting App")
     st.write("Please select an option from the sidebar.")
     
 elif option == "Image":
