@@ -31,9 +31,11 @@ def detect_faces_in_webcam():
 
     # Attempt to open the webcam
     webcam = cv2.VideoCapture(0)
-    if not webcam.isOpened():
-        st.error("Error: Unable to open webcam.")
-        return
+
+    #Check if the webcam is open or not
+    #if not webcam.isOpened():
+     #   st.error("Error: Unable to open webcam.")
+      #  return
 
     while True:
         # Capture frame-by-frame
