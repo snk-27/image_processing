@@ -21,7 +21,7 @@ def detect_faces_in_image(image):
     image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     
     # Display the image with rectangles around the faces
-    resized_image = cv2.resize(image, (600, 600)) 
+    resized_image = cv2.resize(image_rgb, (600, 600)) 
     return resized_image, len(faces)
 
 # Function to detect and count faces from live webcam
