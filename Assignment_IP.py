@@ -20,7 +20,7 @@ def detect_faces_in_image(image):
     # Convert BGR image to RGB
     image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     
-    # Display the image with rectangles around the faces
+    # Display the image with rectangles around the faces in rgb/correct colour channel
     resized_image = cv2.resize(image_rgb, (600, 600)) 
     return resized_image, len(faces)
 
@@ -29,12 +29,20 @@ def detect_faces_in_webcam():
     # Load the pre-trained face detector
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
-    # Detect and count face from live webcam
+    # Attempt to open the webcam
     webcam = cv2.VideoCapture(0)
+    if not webcam.isOpened():
+        st.error("Error: Unable to open webcam.")
+        return
 
     while True:
         # Capture frame-by-frame
         ret, frame = webcam.read()
+
+        # Check if frame is valid
+        if not ret:
+            st.error("Error: Unable to read frame from webcam.")
+            break
 
         # Convert the frame to grayscale
         gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -51,7 +59,7 @@ def detect_faces_in_webcam():
 
         # Display the frame with rectangles around the faces and face count
         cv2.putText(frame, f"Total Faces: {face_count}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-        st.image(frame, channels="BGR")
+        st.image(frame, channels="BGR", use_column_width=True)
 
         # Exit loop if 'q' key is pressed
         if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -82,7 +90,7 @@ elif option == "Image":
             # Detect and count faces in the uploaded image
             if st.button("Detect Faces"):
                 resized_image, num_faces = detect_faces_in_image(image)
-                st.image(resized_image, caption=f'Faces Detected: {num_faces}', use_column_width=True)
+                st.image(resized_image, caption=f'Number of Faces Detected: {num_faces}', use_column_width=True)
         except Exception as e:
             st.error(f"Error: {e}")
 elif option == "Live Webcam":
