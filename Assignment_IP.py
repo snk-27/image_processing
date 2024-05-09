@@ -72,7 +72,7 @@ def detect_faces_in_webcam():
     cv2.destroyAllWindows()
 
 # Sidebar dropdown list for selecting the option
-option = st.sidebar.selectbox("Select Option", ("None", "Image", "Live Webcam"))
+option = st.sidebar.selectbox("Select Option", ("Live Webcam", "Image", "None"))
 
 # Display content based on the selected option
 if option == "Live Webcam":
