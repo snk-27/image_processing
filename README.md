@@ -1,5 +1,5 @@
 # image_processing
-<img src="images/example.png" width="100" height="100">
+<img src="imgSample2.jpg" width="100" height="100">
 
 
     
