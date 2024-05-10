@@ -1,4 +1,5 @@
 # image_processing
-![Sample Image](imgSample2.jpg)
+<img src="images/example.png" width="100" height="100">
+
 
     
