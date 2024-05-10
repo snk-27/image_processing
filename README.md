@@ -1,1 +1,17 @@
 # image_processing
+    st.title("Welcome to our Face Counting App")
+    st.caption("Please select an option from the sidebar.")
+    st.write("How to Use :")
+    st.markdown("1. **Select an option** from the sidebar.")
+    st.image("C:/Users/User/Desktop/image_processing-main/img/homeImg1.png", caption="Step 1: Select an option", use_column_width=True)
+    st.markdown("2. **Upload an image** if you choose the 'From Image' option.")
+    st.image("C:/Users/User/Desktop/image_processing-main/img/homeImg2.png", caption="Step 2: Upload an image", use_column_width=True)
+    st.markdown("3. **Click 'Detect Faces'** to detect faces in the uploaded image.")
+    st.image("C:/Users/User/Desktop/image_processing-main/img/homeImg3.png", caption="Step 3: Click 'Detect Faces'", use_column_width=True)
+    st.image("C:/Users/User/Desktop/image_processing-main/img/homeImg4.png", caption="Result", use_column_width=True)
+    st.markdown("4. **Click 'From Live Webcam'** to detect faces based on the live webcam.")
+    st.image("C:/Users/User/Desktop/image_processing-main/img/homeImg5.png", caption="Step 4: Click 'Live Webcam'", use_column_width=True)
+    st.markdown("5. **Click 'Start Webcam'** to start the live counting.")
+    st.image("C:/Users/User/Desktop/image_processing-main/img/homeImg6.png", caption="Step 5: Click 'Start Webcam'", use_column_width=True)
+    st.image("C:/Users/User/Desktop/image_processing-main/img/homeImg6.1.png", caption="Result", use_column_width=True)
+    
