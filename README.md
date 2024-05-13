@@ -20,7 +20,7 @@ Example for me i kept the folder like this :
 5. If want to download from github, 
 Link : https://github.com/snk-27/image_processing.git
 
-
+<br/><br/>
 Additional info
 - haarcascade_frontalface_default.xml is our dataset
 - requirements.txt is what we need to run the system in streamlit.
