@@ -1,5 +1,7 @@
 # Image Processing Assignment 
+
 How to run? 
+
 1. Make sure to install these : 
  pip install opencv-python
  pip install opencv-python-headless
@@ -14,6 +16,9 @@ Example for me i kept the folder like this :
 3. You may use the images in img folder for the detecting and counting the faces in the "From Images" option
 
 4. Use the slider(Scale factor and Minimum neighbour) to adjust the accuracy to detect and count the faces. 
+
+5. If want to download from github, 
+Link : https://github.com/snk-27/image_processing.git
 
 
 Additional info
